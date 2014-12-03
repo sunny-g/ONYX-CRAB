@@ -1,4 +1,4 @@
-# Project Name #
+# ONYX-CRAB #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > 3D VR image viewer for Google Carboard using Three.js
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > VR-enthusiasts who want to view their images in 3D.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > This tool lets VR-enthusiasts view their images and panoramas in 3D.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Some people want to experience their images in an immersive environment.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Our tool lets users upload their own pictures to be viewed from their phone in a Google Cardboard.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Live life twice."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Head over to our [website](blah.com) on your smartphone and upload a photo. Then put your smartphone in your Google Cardboard and enjoy!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "This is basically a time machine. -Steve Jobs"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Go to our webpage to use the tool or clone it and run it yourself!
