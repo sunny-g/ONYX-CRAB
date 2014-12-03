@@ -1,12 +1,12 @@
-# Project Name
+# ONYX-CRAB
 
-> Pithy project description
+> 3D VR image viewer
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: sunny-g
+  - __Scrum Master__: aggfr12
+  - __Development Team Members__: mochicat8, owen-d
 
 ## Table of Contents
 
@@ -25,8 +25,6 @@
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
 - etc
 - etc
 
@@ -44,7 +42,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [ROADMAP.md](ROADMAP.md)
 
 
 ## Contributing
