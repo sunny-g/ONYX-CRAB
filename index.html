@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="ONYX-CRAB">
+<head>
+    <meta charset="utf-8" />
+    <title>3D Photo Visualizer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+ 
+    <!-- add styles -->
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+ 
+    <!-- add javascripts -->
+    <script src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
+    <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
+    <script src="http://code.angularjs.org/1.2.0rc1/angular-touch.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <header>
+    </header>
+ 
+    <!-- Photo container -->
+    <div class="photo container slider">
+ 
+        <!-- extra navigation controls -->
+        <ul class="nav">
+            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+                <img src="{{photo.src}}" ng-click="showPhoto($index);" />
+            </li>
+        </ul>
+ 
+    </div>
+</body>
