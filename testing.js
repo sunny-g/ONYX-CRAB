@@ -8,15 +8,20 @@ init();
 animate();
 
 function init() {
+  /********************/
+  /********************/
+  // BOILERPLATE TO RENDER THE ENVIRONMENT
+  // DO NOT TOUCH THIS
   renderer = new THREE.WebGLRenderer();
   element = renderer.domElement;
   container = document.getElementById('example');
   container.appendChild(element);
 
   effect = new THREE.StereoEffect(renderer);
-
   scene = new THREE.Scene();
 
+  /********************/
+  // UNDERSTAND THIS BETTER
   camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
   camera.position.set(0, 10, 0);
   scene.add(camera);
@@ -24,7 +29,7 @@ function init() {
   controls = new THREE.OrbitControls(camera, element);
   controls.rotateUp(Math.PI / 4);
   controls.target.set(
-    camera.position.x + 0.1,
+    camera.position.x /* + 0.1 */,
     camera.position.y,
     camera.position.z
   );
@@ -41,14 +46,21 @@ function init() {
     controls.update();
 
     element.addEventListener('click', fullscreen, false);
-
     window.removeEventListener('deviceorientation', setOrientationControls);
   }
+
   window.addEventListener('deviceorientation', setOrientationControls, true);
+  window.addEventListener('resize', resize, false);
+  setTimeout(resize, 1);
+  /********************/
+  // END OF BOILERPLATE
+  /********************/
 
   var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
   scene.add(light);
 
+  /********************/
+  // UNDERSTAND THIS BETTER
   var texture = THREE.ImageUtils.loadTexture(
     'cardboard/textures/patterns/checker.png'
   );
@@ -71,8 +83,16 @@ function init() {
   mesh.rotation.x = -Math.PI / 2;
   scene.add(mesh);
 
-  window.addEventListener('resize', resize, false);
-  setTimeout(resize, 1);
+  var planegeometry = new THREE.PlaneGeometry( 5, 20, 32 );
+  var planematerial = new THREE.MeshBasicMaterial({
+    color: 0xffff00,
+    side: THREE.DoubleSide,
+    map: texture
+  });
+  var plane = new THREE.Mesh( planegeometry, planematerial );
+  scene.add( plane );
+
+  camera.position.y = 5;
 }
 
 function resize() {
