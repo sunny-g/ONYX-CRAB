@@ -4,9 +4,6 @@ var element, container;
 
 var clock = new THREE.Clock();
 
-init();
-animate();
-
 function init() {
   /********************/
   /********************/
@@ -21,15 +18,16 @@ function init() {
   scene = new THREE.Scene();
 
   /********************/
-  // UNDERSTAND THIS BETTER
+  // UNDERSTAND THIS STUFF BETTER
   camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
   camera.position.set(0, 10, 0);
   scene.add(camera);
 
   controls = new THREE.OrbitControls(camera, element);
-  controls.rotateUp(Math.PI / 4);
+  controls.rotateUp(Math.PI / 2);
   controls.target.set(
-    camera.position.x /* + 0.1 */,
+    // camera.position.x + 0.1,
+    camera.position.x,
     camera.position.y,
     camera.position.z
   );
@@ -56,43 +54,45 @@ function init() {
   // END OF BOILERPLATE
   /********************/
 
-  var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
-  scene.add(light);
+//  var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
+//  scene.add(light);
 
   /********************/
   // UNDERSTAND THIS BETTER
-  var texture = THREE.ImageUtils.loadTexture(
-    'cardboard/textures/patterns/checker.png'
+//  var texture = THREE.ImageUtils.loadTexture(
+//    'cardboard/textures/patterns/checker.png'
+//  );
+//  texture.wrapS = THREE.RepeatWrapping;
+//  texture.wrapT = THREE.RepeatWrapping;
+//  texture.repeat = new THREE.Vector2(50, 50);
+//  texture.anisotropy = renderer.getMaxAnisotropy();
+//
+//  var material = new THREE.MeshPhongMaterial({
+//    color: 0xffffff,
+//    specular: 0xffffff,
+//    shininess: 20,
+//    shading: THREE.FlatShading,
+//    map: texture
+//  });
+//
+//  var geometry = new THREE.PlaneGeometry(1000, 1000);
+//  var mesh = new THREE.Mesh(geometry, material);
+//  mesh.rotation.x = -Math.PI / 2;
+//  scene.add(mesh);
+
+  var pic = THREE.ImageUtils.loadTexture(
+    'http://localhost:8080/photos/dolphin.jpg'
   );
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat = new THREE.Vector2(50, 50);
-  texture.anisotropy = renderer.getMaxAnisotropy();
-
-  var material = new THREE.MeshPhongMaterial({
-    color: 0xffffff,
-    specular: 0xffffff,
-    shininess: 20,
-    shading: THREE.FlatShading,
-    map: texture
-  });
-
-  var geometry = new THREE.PlaneGeometry(1000, 1000);
-
-  var mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = -Math.PI / 2;
-  scene.add(mesh);
-
-  var planegeometry = new THREE.PlaneGeometry( 5, 20, 32 );
+  var planegeometry = new THREE.PlaneGeometry( 635, 441 );
   var planematerial = new THREE.MeshBasicMaterial({
-    color: 0xffff00,
-    side: THREE.DoubleSide,
-    map: texture
+    color: 0xffffff,
+    // side: THREE.DoubleSide,
+    map: pic
   });
   var plane = new THREE.Mesh( planegeometry, planematerial );
   scene.add( plane );
 
-  camera.position.y = 5;
+  camera.position.y = 441 / 1.5;
 }
 
 function resize() {
