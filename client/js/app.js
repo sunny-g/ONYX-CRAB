@@ -12,11 +12,11 @@ angular.module('onyxCrab', [
     controller: 'MainCtrl',
   })
   .state('stereoView', {
-    url: '/stereo/:photo',
+    url: '/stereo',
     templateUrl: 'stereoView.html'
   })
 })
-.controller('MainCtrl', function ($scope) {
+.controller('MainCtrl', function ($scope, $state) {
 
   // Set of Photos
   $scope.photos = [
@@ -44,6 +44,8 @@ angular.module('onyxCrab', [
   // show a certain image
   $scope.showPhoto = function (index) {
     $scope._Index = index;
+    // var filename = index.src;
+    $state.go('stereoView');
   };
 
 });
