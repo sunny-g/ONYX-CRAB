@@ -24,7 +24,6 @@ angular.module('ONYX-CRAB', ['ngAnimate', 'ngTouch'])
         return $scope._Index === index;
     };
  
- 
     // show a certain image
     $scope.showPhoto = function (index) {
         $scope._Index = index;

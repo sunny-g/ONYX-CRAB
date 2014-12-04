@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title>3D Photo Visualizer</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
  
     <!-- add styles -->
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
  
     <!-- add javascripts -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
     <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
     <script src="http://code.angularjs.org/1.2.0rc1/angular-touch.min.js"></script>
@@ -19,9 +18,10 @@
     <header>
     </header>
  
-    <!-- Photo container -->
+    <!-- slider container -->
     <div class="photo container slider">
  
+
         <!-- extra navigation controls -->
         <ul class="nav">
             <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
