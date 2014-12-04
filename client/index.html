@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="ONYX-CRAB">
+<html ng-app="onyxCrab">
 <head>
     <meta charset="utf-8" />
     <title>3D Photo Visualizer</title>
- 
+
     <!-- add styles -->
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
- 
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.css">
+
     <!-- add javascripts -->
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
-    <script src="http://code.angularjs.org/1.2.0rc1/angular-animate.min.js"></script>
-    <script src="http://code.angularjs.org/1.2.0rc1/angular-touch.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.js"></script>
+
     <script src="js/app.js"></script>
 </head>
-<body ng-controller="MainCtrl">
-    <header>ONYX-CRAB
-    </header>
- 
-    <!-- slider container -->
-    <div class="photo container slider">
- 
+<body>
+    <header>Onyx-Crab</header>
 
-        <!-- extra navigation controls -->
-        <ul class="nav">
-            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
-                <img src="{{photo.src}}" ng-click="showPhoto($index);" />
-            </li>
-        </ul>
- 
-    </div>
+    <div ui-view></div>
+
 </body>
+</html>
