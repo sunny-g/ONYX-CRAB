@@ -50,7 +50,9 @@ function imageInit(url, filename) {
   plane.rotation.y = -Math.PI/2;
   scene.add( plane );
 
-  camera.position.y = 300;
+  camera.position.y = -200;
+  camera.position.x = -200;
+  // camera.position.z = -200;
 
 //  var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
 //  cardboard.scene.add(light);
