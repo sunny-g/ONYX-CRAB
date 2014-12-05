@@ -56,9 +56,7 @@ angular.module('onyxCrab', [
 
   var fileName = $stateParams.fileName;
 
-  // console.log(imageInit);
-
-  sceneInit();
+  setup();
   imageInit('http://localhost:3000/', fileName);
-  animate();
+  cardboard.animate();
 })
