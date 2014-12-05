@@ -10,6 +10,7 @@ function imageInit(url, filename) {
   });
 
 
+
   var planegeometry = new THREE.PlaneGeometry( 635, 441 );
   var planematerial = new THREE.MeshBasicMaterial({
     color: 0x99CCFF,
@@ -20,6 +21,7 @@ function imageInit(url, filename) {
   cardboard.scene.add( plane );
 
   cardboard.camera.position.y = 441 / 1.5;
+
 
 }
 
