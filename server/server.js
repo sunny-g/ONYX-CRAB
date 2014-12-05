@@ -7,6 +7,8 @@ var url = require('url');
 var fs = require('fs');
 var path = require('path');
 
+var PORT = 8080;
+
 var app = express();
 
 // app.set('views', __dirname + '/views');
@@ -49,18 +51,15 @@ app.use('*', function(req, res){
 });
 //------------ROUTING------------------------------------------------------------------------
 
-
 //----------------Methods----------------
-
 
 
 // app.get('*', function(req, res) {
 //   res.sendFile('index.html');
 // });
 
-console.log('Server is listening on 3000');
-app.listen(3000);
-
+console.log('Server is listening on', PORT);
+app.listen(PORT);
 
 mongoose.connect('mongodb://localhost/jobColl');
 

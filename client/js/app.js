@@ -54,9 +54,15 @@ angular.module('onyxCrab', [
 })
 .controller('StereoCtrl', function($scope, $state, $stateParams){
 
+  var url = 'http://localhost:8080/';
   var fileName = $stateParams.fileName;
 
-  setup();
-  imageInit('http://localhost:3000/', fileName);
-  cardboard.animate();
+//  setup();
+//  imageInit('http://localhost:8080/', fileName);
+//  cardboard.animate();
+
+  init();
+  imageInit(url, fileName);
+  animate();
+
 })
