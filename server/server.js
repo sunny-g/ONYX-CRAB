@@ -23,24 +23,21 @@ app.get('/api/photos/*', function(req, res){
 
 });
 
-app.post('/photos/new', function(req, res) {
-  req.form.complete(function(err, fields, files) {
-    if(err) {
-      next(err);
-    } else {
-      ins = fs.createReadStream(files.photo.path);
-      ous = fs.createWriteStream(__dirname + '/client/photos/' + files.photo.filename);
-
-      util.pump(ins, ous, function(err) {
-        if(err) {
-          next(err);
-        } else {
-          res.redirect('/');
-        }
-      });
-      //console.log('\nUploaded %s to %s', files.photo.filename, files.photo.path);
-      //res.send('Uploaded ' + files.photo.filename + ' to ' + files.photo.path);
-    }
+app.post('/api/photos/*', function(req, res) {
+  // var data = new Buffer('');
+  // req.on('data', function(chunk) {
+    // data = Buffer.concat([data, chunk]);
+  var data = '';
+  req.on('data', function(chunk){
+    data += chunk;
+  });
+  req.on('end', function() {
+    // req.rawBody = data;     
+    fs.writeFile(__dirname + 'client/photos' + req.url, data ,function(err){
+      if(err) throw err;
+      console.log('ok saved')
+    });
+    res.send('ok');
   });
 });
 
