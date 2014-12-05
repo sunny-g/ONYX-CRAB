@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // Parse forms (signup/login)
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/photos', function(req, res){
+app.get('/api/photos/*', function(req, res){
 
 });
 

@@ -11,7 +11,7 @@ function sceneInit() {
   // DO NOT TOUCH THIS
   renderer = new THREE.WebGLRenderer();
   element = renderer.domElement;
-  container = document.getElementById('example');
+  container = document.getElementById('stereoView');
   container.appendChild(element);
 
   effect = new THREE.StereoEffect(renderer);

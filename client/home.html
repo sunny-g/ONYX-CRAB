@@ -1,11 +1,14 @@
+<header>Onyx-Crab</header>
+
 <!-- slider container -->
 <div class="photo container slider">
 
     <!-- extra navigation controls -->
     <ul class="nav">
         <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
-            <img src="{{photo.src}}" ng-click="showPhoto($index);" />
+            <img src="{{photo.src}}" ng-click="showPhoto($index, photo);" />
         </li>
     </ul>
 
 </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              1
