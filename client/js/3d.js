@@ -9,6 +9,7 @@ function imageInit(url, filename) {
     console.log('got an error loading texture');
   });
 
+
   var planegeometry = new THREE.PlaneGeometry( 635, 441 );
   var planematerial = new THREE.MeshBasicMaterial({
     color: 0x99CCFF,
@@ -16,9 +17,9 @@ function imageInit(url, filename) {
     map: pic
   });
   var plane = new THREE.Mesh( planegeometry, planematerial );
-  scene.add( plane );
+  cardboard.scene.add( plane );
 
-  camera.position.y = 441 / 1.5;
+  cardboard.camera.position.y = 441 / 1.5;
 
 }
 

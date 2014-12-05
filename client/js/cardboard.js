@@ -1,109 +1,108 @@
-var camera, scene, renderer;
-var effect, controls;
-var element, container;
+function Cardboard() {
 
-var clock = new THREE.Clock();
+  this.renderer = new THREE.WebGLRenderer({
+    antialias: true
+  });
+  this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-function sceneInit() {
-  /********************/
-  /********************/
-  // BOILERPLATE TO RENDER THE ENVIRONMENT
-  // DO NOT TOUCH THIS
-  renderer = new THREE.WebGLRenderer();
-  element = renderer.domElement;
-  container = document.getElementById('stereoView');
-  container.appendChild(element);
+  this.scene = new THREE.Scene();
+  this.effect = new THREE.StereoEffect(this.renderer);
 
-  effect = new THREE.StereoEffect(renderer);
-  scene = new THREE.Scene();
+  this.camera = new THREE.PerspectiveCamera(
+  90, window.innerWidth / window.innerHeight, 0.001, 700);
+  this.scene.add(this.camera);
 
-  /********************/
-  // UNDERSTAND THIS STUFF BETTER
-  // camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
-  camera = new THREE.PerspectiveCamera(45, 650/580, 0.1, 700 );
-  camera.position.set(0, 10, 0);
-  scene.add(camera);
+  this.controls = new THREE.DeviceOrientationControls(this.camera, true);
 
-  controls = new THREE.OrbitControls(camera, element);
-  controls.rotateUp(Math.PI / 2);
-  controls.target.set(
-    // camera.position.x + 0.1,
-    camera.position.x,
-    camera.position.y,
-    camera.position.z
-  );
-  controls.noZoom = true;
-  controls.noPan = true;
+  this.orbitControls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+  this.orbitControls.noZoom = true;
+  this.orbitControls.noPan = true;
+  this.orbitControls.autoRotate = false;
 
-  var pointLight =
-    new THREE.PointLight(0xFFFFFF);
+  window.addEventListener('resize', this.resize.bind(this), false);
 
-  // set its position
-  pointLight.position.x = 10;
-  pointLight.position.y = 50;
-  pointLight.position.z = 130;
+  this._initControls = this.initControls.bind(this);
+  window.addEventListener('deviceorientation', this._initControls, false);
 
-  // add to the scene
-  scene.add(pointLight);
+  setTimeout(this.resize.bind(this), 0);
 
-  function setOrientationControls(e) {
-    if (!e.alpha) {
-      return;
-    }
+  // hack for resize when iframe doesn't get a rotation event
+  // window.addEventListener('message', this.resize.bind(this), false );
 
-    controls = new THREE.DeviceOrientationControls(camera, true);
-    controls.connect();
-    controls.update();
+  this.animate = this.animate.bind(this);
+  setTimeout(this.play.bind(this), 0);
 
-    element.addEventListener('click', fullscreen, false);
-    window.removeEventListener('deviceorientation', setOrientationControls);
+}
+
+Cardboard.prototype.initControls = function(event) {
+  if (event.alpha) {
+
+    window.removeEventListener('deviceorientation', this._initControls, false);
+    this.renderer.domElement.addEventListener('click', this.fullscreen.bind(this), false);
+
+    this.orbitControls.enabled = false;
+
+    this.controls.connect();
+    this.controls.update();
   }
+};
 
-  window.addEventListener('deviceorientation', setOrientationControls, true);
+Cardboard.prototype.animate = function() {
+  if (!this._playing)
+    return;
+  requestAnimationFrame(this.animate);
+  this.update();
+  this.render();
+};
 
-  var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
-  scene.add(light);
-  
-  window.addEventListener('resize', resize, false);
-  setTimeout(resize, 1);
-}
+Cardboard.prototype.pause = function() {
+  this._playing = false;
+};
 
-function resize() {
-  var width = container.offsetWidth;
-  var height = container.offsetHeight;
+Cardboard.prototype.play = function() {
+  if (this._playing) return;
+  this._playing = true;
+  this.animate();
+};
 
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(width, height);
-  effect.setSize(width, height);
-}
-
-function update(dt) {
-  resize();
-  camera.updateProjectionMatrix();
-  controls.update(dt);
-}
-
-function render(dt) {
-  effect.render(scene, camera);
-}
-
-function animate(t) {
-  requestAnimationFrame(animate);
-
-  update(clock.getDelta());
-  render(clock.getDelta());
-}
-
-function fullscreen() {
-  if (container.requestFullscreen) {
-    container.requestFullscreen();
-  } else if (container.msRequestFullscreen) {
-    container.msRequestFullscreen();
-  } else if (container.mozRequestFullScreen) {
-    container.mozRequestFullScreen();
-  } else if (container.webkitRequestFullscreen) {
-    container.webkitRequestFullscreen();
+Cardboard.prototype.update = function() {
+  // hack to resize if width and height change
+  if (this.width !== window.innerWidth || this.height !== window.innerHeight) {
+    this.resize();
   }
-}
+  this.camera.updateProjectionMatrix();
+  if (this.controls.freeze === false) {
+    this.controls.update();
+  } else {
+    this.orbitControls.update();
+  }
+};
+
+Cardboard.prototype.render = function() {
+  //if (this.controls.freeze === false) {
+  this.effect.render(this.scene, this.camera);
+  //} else {
+  //this.renderer.render(this.scene, this.camera);
+  //}
+};
+
+Cardboard.prototype.fullscreen = function() {
+  if (this.renderer.domElement.requestFullscreen) {
+    this.renderer.domElement.requestFullscreen();
+  } else if (this.renderer.domElement.msRequestFullscreen) {
+    this.renderer.domElement.msRequestFullscreen();
+  } else if (this.renderer.domElement.mozRequestFullScreen) {
+    this.renderer.domElement.mozRequestFullScreen();
+  } else if (this.renderer.domElement.webkitRequestFullscreen) {
+    this.renderer.domElement.webkitRequestFullscreen();
+  }
+};
+
+Cardboard.prototype.resize = function() {
+  this.width = window.innerWidth;
+  this.height = window.innerHeight;
+  this.camera.aspect = this.width / this.height;
+  this.camera.updateProjectionMatrix();
+  this.renderer.setSize(this.width, this.height);
+  this.effect.setSize(this.width, this.height);
+};

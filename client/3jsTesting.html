@@ -11,8 +11,8 @@
     
 </head>
 <body >
-   <div id="example"></div>
-   <script src="bower_components/threejs/build/three.js"></script>
+   <div id="scene"></div>
+   <script src="bower_components/threejs/build/three.min.js"></script>
    <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
    <script src="js/third-party/threejs/OrbitControls.js"></script>
    <script src="js/third-party/threejs/StereoEffect.js"></script>
@@ -22,9 +22,44 @@
    <script>
 
    
-     sceneInit();
-     imageInit();
-     animate();
+     // sceneInit();
+     // imageInit();
+     // animate();
+
+     var cardboard, gallery, cursor;
+
+     function setup() {
+
+       cardboard = new Cardboard();
+
+       // gallery = new Gallery(DEMOS);
+       // cardboard.scene.add(gallery);
+       imageInit(1,2, cardboard);
+
+       // cursor = new Cursor();
+       // cardboard.camera.add(cursor);
+       // cursor.position.z = -3 * SCALE;
+       // cursor.lookAt(cardboard.camera.position);
+
+       cardboard.effect.separation = 0.6;
+
+       // if (!has.mobile) {
+         // setTimeout(function() {
+           // cardboard.orbitControls.target.set(0, 0.3, 1);
+         // }, 0);
+       // }
+
+       cardboard.update = function() {
+         Cardboard.prototype.update.call(this);
+         // gallery.update();
+       };
+
+       document.getElementById('scene').appendChild(cardboard.renderer.domElement);
+
+     }
+
+
+     setup();
 
 
    </script>
