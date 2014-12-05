@@ -58,7 +58,7 @@ angular.module('onyxCrab', [
 
   // console.log(imageInit);
 
-  // sceneInit();
-  // imageInit('http://localhost:3000/', fileName);
-  // animate();
+  sceneInit();
+  imageInit('http://localhost:3000/', fileName);
+  animate();
 })
