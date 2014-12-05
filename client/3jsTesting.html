@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>3D Photo Visualizer</title>
+   <style>
+            body { margin: 0; }
+            canvas { width: 100%; height: 100% }
+        </style>
+ 
+    
+</head>
+<body >
+   <div id="scene"></div>
+   <script src="bower_components/threejs/build/three.js"></script>
+   <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+   <script src="js/third-party/threejs/OrbitControls.js"></script>
+   <script src="js/third-party/threejs/StereoEffect.js"></script>
+   <script src="js/cardboard.js"></script>
+   <script src="js/3d.js"></script>
+
+   <script>
+
+   
+     // sceneInit();
+     // imageInit();
+     // animate();
+
+     var cardboard, gallery, cursor;
+
+     function setup() {
+
+       cardboard = new Cardboard();
+
+       // gallery = new Gallery(DEMOS);
+       // cardboard.scene.add(gallery);
+       imageInit(1,2, cardboard);
+
+       // cursor = new Cursor();
+       // cardboard.camera.add(cursor);
+       // cursor.position.z = -3 * SCALE;
+       // cursor.lookAt(cardboard.camera.position);
+
+       cardboard.effect.separation = 0.6;
+
+       // if (!has.mobile) {
+         // setTimeout(function() {
+           // cardboard.orbitControls.target.set(0, 0.3, 1);
+         // }, 0);
+       // }
+
+       cardboard.update = function() {
+         Cardboard.prototype.update.call(this);
+         // gallery.update();
+       };
+
+       document.getElementById('scene').appendChild(cardboard.renderer.domElement);
+
+     }
+
+
+     setup();
+
+
+
+   </script>
+    
+</body>
+
