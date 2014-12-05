@@ -10,19 +10,18 @@ body {
     right: 0;
     bottom: 0;
 }
-.
+
 .nav {
     display: block;
-    height: 48px;
+    height: auto;
     left: 0;
     margin: 0 auto;
     padding: 1em 0 0.8em;
     position: absolute;
     right: 0;
-    text-align: center;
+    /*text-align: center;*/
     width: 100%;
     z-index: 5;
-    overflow: hidden;
 }
 .nav li {
     border: 5px solid #AAAAAA;
@@ -34,7 +33,6 @@ body {
     position: relative;
     width: 100px;
     overflow: hidden;
-    position: relative;
 }
 .nav li.active {
     border: 5px solid #FFFFFF;
