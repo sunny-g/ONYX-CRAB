@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 // var partials = require('express-partials');
 var db = require('../db/dbInit.js');
 var bodyParser = require('body-parser');
+var busboy = require('connect-busboy');
 var url = require('url');
 var fs = require('fs');
 var path = require('path');
@@ -11,36 +12,27 @@ var PORT = 8080;
 
 var app = express();
 
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs');
-// app.use(partials());
 // Parse JSON (uniform resource locators)
 app.use(bodyParser.json());
 // Parse forms (signup/login)
 app.use(bodyParser.urlencoded({ extended: true }));
+// Parse multipart input
+app.use(busboy());
 
-app.get('/api/photos/*', function(req, res){
+app.post('/', function(req, res) {
 
-});
-
-app.post('/api/photos/*', function(req, res) {
-  // var data = new Buffer('');
-  // req.on('data', function(chunk) {
-    // data = Buffer.concat([data, chunk]);
-  var data = '';
-  req.on('data', function(chunk){
-    data += chunk;
-  });
-  req.on('end', function() {
-    // req.rawBody = data;     
-    fs.writeFile(__dirname + 'client/photos' + req.url, data ,function(err){
-      if(err) throw err;
-      console.log('ok saved')
+  var fstream;
+  req.pipe(req.busboy);
+  req.busboy.on('file', function (fieldname, file, filename) {
+    console.log("Uploading filename: " + filename);
+    fstream = fs.createWriteStream(__dirname + '/../client/photos/' + filename);
+    file.pipe(fstream);
+    fstream.on('close', function () {
+      res.redirect('back');
     });
-    res.send('ok');
   });
-});
 
+});
 
 app.use(express.static(__dirname + '../../client'));
 app.use('*', function(req, res){
