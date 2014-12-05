@@ -51,6 +51,18 @@ angular.module('onyxCrab', [
 
   };
 
+  // $scope.picture = "";
+  $scope.uploadFile = function(){
+    var name = document.getElementById('photoInput').value;
+    console.log(name);
+    //create an object with string name and push to scope.photos
+    name = name.split('\\');
+    name = 'photos/' + name[name.length-1];
+    console.log(name);
+    $scope.photos.push({src: name, desc:'UserPhoto'});
+    console.log($scope.photos);
+  };
+
 })
 .controller('StereoCtrl', function($scope, $state, $stateParams){
 
