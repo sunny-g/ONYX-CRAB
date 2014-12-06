@@ -1,4 +1,10 @@
 <header>Onyx-Crab</header>
+<div>
+	<form name="pictureForm" enctype="multipart/form-data" ng-submit="uploadFile()">
+		<input id="photoInput" type="file" name="picture"/>
+		<button type="submit">Upload File</button>
+	</form>
+</div>
 
 <!-- slider container -->
 <div class="photo container slider">
@@ -11,9 +17,3 @@
     </ul>
 </div>
 
-<div>
-	<form name="pictureForm" enctype="multipart/form-data" ng-submit="uploadFile()">
-		<input id="photoInput" type="file" name="picture"/>
-		<button type="submit">Upload File</button>
-	</form>
-</div>
