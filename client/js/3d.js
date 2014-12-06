@@ -13,7 +13,7 @@ function setup() {
   document.getElementById('stereoView').appendChild(cardboard.renderer.domElement);
 }
 
-function imageInit(url, filename, width, height) {
+function imageInit(filepath, width, height) {
 
 //  var pic = THREE.ImageUtils.loadTexture(url + filename, null, function() {
 //    console.log('loading texture');
@@ -33,7 +33,7 @@ function imageInit(url, filename, width, height) {
 //
 //  cardboard.camera.position.y = 441 / 1.5;
 
-  var pic = THREE.ImageUtils.loadTexture(url + filename, null, function() {
+  var pic = THREE.ImageUtils.loadTexture(filepath, null, function() {
     console.log('loading texture');
   }, function(err) {
     if (err) {

@@ -30,7 +30,7 @@ app.post('/', function(req, res) {
     fstream.on('close', function () {
       // res.redirect('back');
       console.log('closing stream');
-      // res.end();
+      res.end();
     });
   });
 
@@ -38,7 +38,7 @@ app.post('/', function(req, res) {
 
 app.use(express.static(__dirname + '../../client'));
 app.use('*', function(req, res){
-  // res.redirect('/');
+  res.redirect('/');
 });
 //------------ROUTING------------------------------------------------------------------------
 
