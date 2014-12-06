@@ -13,7 +13,7 @@ function setup() {
   document.getElementById('stereoView').appendChild(cardboard.renderer.domElement);
 }
 
-function imageInit(url, filename) {
+function imageInit(url, filename, width, height) {
 
 //  var pic = THREE.ImageUtils.loadTexture(url + filename, null, function() {
 //    console.log('loading texture');
@@ -41,7 +41,7 @@ function imageInit(url, filename) {
     }
   });
 
-  var planegeometry = new THREE.PlaneBufferGeometry( 635, 441 );
+  var planegeometry = new THREE.PlaneBufferGeometry( width, height ); //635, 441
   var planematerial = new THREE.MeshBasicMaterial({
     color: 0xFFFFFF,
     map: pic
@@ -50,9 +50,11 @@ function imageInit(url, filename) {
   plane.rotation.y = -Math.PI/2;
   scene.add( plane );
 
-  camera.position.y = -200;
-  camera.position.x = -200;
-  // camera.position.z = -200;
+  var c = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
+  //3.87 as a constant is just what I chose. The magic number, so to speak. Feel free to change it.
+  camera.position.y = -c/3.87;
+  camera.position.x = -c/3.87;
+  // both initiated to -200
 
 //  var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
 //  cardboard.scene.add(light);
