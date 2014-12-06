@@ -90,7 +90,7 @@ angular.module('onyxCrab', [
 //  cardboard.animate();
 
   init();
-  imageInit(url, fileName, 600, 1000);
+  imageInit(url, fileName, 650, 450);
   animate();
 
 })

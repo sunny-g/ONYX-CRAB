@@ -51,6 +51,7 @@ function imageInit(url, filename, width, height) {
   scene.add( plane );
 
   var c = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
+  //3.87 as a constant is just what I chose. The magic number, so to speak. Feel free to change it.
   camera.position.y = -c/3.87;
   camera.position.x = -c/3.87;
   // both initiated to -200
