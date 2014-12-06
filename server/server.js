@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboy());
 
 app.post('/', function(req, res) {
-
+  console.log('post request', req.url);
   var fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
@@ -28,7 +28,9 @@ app.post('/', function(req, res) {
     fstream = fs.createWriteStream(__dirname + '/../client/photos/' + filename);
     file.pipe(fstream);
     fstream.on('close', function () {
-      res.redirect('back');
+      // res.redirect('back');
+      console.log('closing stream');
+      // res.end();
     });
   });
 
@@ -36,7 +38,7 @@ app.post('/', function(req, res) {
 
 app.use(express.static(__dirname + '../../client'));
 app.use('*', function(req, res){
-  res.redirect('/');
+  // res.redirect('/');
 });
 //------------ROUTING------------------------------------------------------------------------
 

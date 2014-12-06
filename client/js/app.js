@@ -18,7 +18,7 @@ angular.module('onyxCrab', [
     controller: 'StereoCtrl'
   })
 })
-.controller('MainCtrl', function ($scope, $state, $stateParams) {
+.controller('MainCtrl', function ($scope, $state, $stateParams, $http) {
 
   // Set of Photos
   $scope.photos = [
@@ -53,14 +53,30 @@ angular.module('onyxCrab', [
 
   // $scope.picture = "";
   $scope.uploadFile = function(){
-    var name = document.getElementById('photoInput').value;
-    console.log(name);
+    var input = document.getElementById('photoInput');
     //create an object with string name and push to scope.photos
-    name = name.split('\\');
+    var name = input.value.split('\\');
     name = 'photos/' + name[name.length-1];
     console.log(name);
-    $scope.photos.push({src: name, desc:'UserPhoto'});
-    console.log($scope.photos);
+    
+    var file = input.files[0];
+    console.log(file, 'FILE');
+
+    var fd = new FormData();
+    fd.append('file', file);
+    console.log(fd);
+
+    $http.post('', fd, {
+      transformRequest: angular.identity,
+      headers: {'Content-Type': undefined}     
+    }).success(function(data){
+      console.log(data, 'SUCCESS');
+      $scope.photos.push({src: name, desc: "hello"});
+    }).error(function(data){
+      console.log(data, 'ERROR');
+    });
+    
+    // $scope.photos.push({src: name, desc:'UserPhoto'});
   };
 
 })

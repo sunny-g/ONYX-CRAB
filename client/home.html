@@ -9,19 +9,11 @@
             <img src="{{photo.src}}" ng-click="showPhoto($index, photo);" />
         </li>
     </ul>
-
-
-
-
-
 </div>
 
 <div>
-<form name="pictureForm" enctype="multipart/form-data" action="/" method="POST" ng-submit="uploadFile()">
-
-	<input id="photoInput" type="file" name="picture"/>
-	<button type="submit">Upload File</button>
-	
-
-</form>
+	<form name="pictureForm" enctype="multipart/form-data" ng-submit="uploadFile()">
+		<input id="photoInput" type="file" name="picture"/>
+		<button type="submit">Upload File</button>
+	</form>
 </div>
