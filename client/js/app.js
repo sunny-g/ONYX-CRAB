@@ -1,6 +1,4 @@
 angular.module('onyxCrab', [
-  // 'ngAnimate',
-  // 'ngTouch',
   'ui.router'
 ])
 .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
@@ -43,56 +41,45 @@ angular.module('onyxCrab', [
     return $scope._Index === index;
   };
 
-  // show a certain image
+  // render the selected image in VR
   $scope.showPhoto = function (index, photo) {
-    // $scope._Index = index;
     var fileName = photo.src;
     $state.go('stereoView', {fileName: fileName});
 
   };
 
-  // $scope.picture = "";
   $scope.uploadFile = function(){
     var input = document.getElementById('photoInput');
-    //create an object with string name and push to scope.photos
     var name = input.value.split('\\');
     name = 'photos/' + name[name.length-1];
-    console.log(name);
-    
-    var file = input.files[0];
-    console.log(file, 'FILE');
 
+    var file = input.files[0];
+
+    // required to post the image data to the server properly
     var fd = new FormData();
     fd.append('file', file);
-    console.log(fd);
 
     $http.post('', fd, {
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}     
     }).success(function(data){
-      console.log(data, 'SUCCESS');
+      console.log(data, 'POSTing image succeeded');
       $scope.photos.push({src: name, desc: "hello"});
     }).error(function(data){
-      console.log(data, 'ERROR');
+      console.log(data, 'error in POSTing image');
     });
     
-    // $scope.photos.push({src: name, desc:'UserPhoto'});
   };
 
 })
 .controller('StereoCtrl', function($scope, $state, $stateParams){
 
-//  var url = 'http://localhost:8080/';
   var url = window.location.origin;
   var fileName = $stateParams.fileName;
   var filepath = url + '/' + fileName;
-
-//  setup();
-//  imageInit('http://localhost:8080/', fileName);
-//  cardboard.animate();
 
   init();
   imageInit(filepath, 650, 450);
   animate();
 
-})
+});
