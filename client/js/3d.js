@@ -3,11 +3,11 @@
 var cardboard;
 
 
-function imageInit(url, filename, width, height) {
+function imageInit(filepath, width, height) {
 
   //currently, we just pass in width/height, but you may want to somehow get image dimensions to pass in as variables.
   //here we load our picture.
-  var pic = THREE.ImageUtils.loadTexture(url + filename, null, function() {
+  var pic = THREE.ImageUtils.loadTexture(filepath, null, function() {
     console.log('loading texture');
   }, function(err) {
     if (err) {
