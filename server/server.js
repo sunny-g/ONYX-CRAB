@@ -40,14 +40,6 @@ app.use(express.static(__dirname + '../../client'));
 app.use('*', function(req, res){
   res.redirect('/');
 });
-//------------ROUTING------------------------------------------------------------------------
-
-//----------------Methods----------------
-
-
-// app.get('*', function(req, res) {
-//   res.sendFile('index.html');
-// });
 
 console.log('Server is listening on', PORT);
 app.listen(PORT);
