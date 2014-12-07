@@ -1,6 +1,6 @@
 # ONYX-CRAB
 
-> 3D VR image viewer
+> VR image viewer
 
 ## Team
 

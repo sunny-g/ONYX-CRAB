@@ -17,13 +17,13 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > 3D VR image viewer for Google Carboard using Three.js
+  > VR image viewer for Google Carboard using Three.js
 
 ## Sub-Heading ##
-  > VR-enthusiasts who want to view their images in 3D.
+  > VR-enthusiasts who want to view their images in virtual reality.
 
 ## Summary ##
-  > This tool lets VR-enthusiasts view their images and panoramas in 3D.
+  > This tool lets VR-enthusiasts view their images and panoramas in virtual reality.
 
 ## Problem ##
   > Some people want to experience their images in an immersive environment.
