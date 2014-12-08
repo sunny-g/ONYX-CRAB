@@ -20,13 +20,13 @@
 
 ## Usage
 
-To run the server locally:
+Go to our [demo](onyxcrabby.azurewebsites.net) page to try it out or run the server locally:
 
 ```
 node server/server.js
 ```
 
-Then navigate to ```localhost:8080``` on your smartphone, upload and/or pick a picture, hoist the phone into your Cardboard and enjoy!
+In Chrome on your desktop, enable [reverse port forwarding](https://developer.chrome.com/devtools/docs/remote-debugging). After you're set up, navigate to ```localhost:8080``` on your smartphone, upload and/or pick a picture, hoist the phone into your Cardboard and enjoy!
 
 ## Requirements
 
