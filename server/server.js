@@ -1,6 +1,5 @@
 var express = require('express');
 var mongoose = require('mongoose');
-// var partials = require('express-partials');
 var db = require('../db/dbInit.js');
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy');
@@ -20,7 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboy());
 
 app.post('/', function(req, res) {
-  console.log('post request', req.url);
+
+  // this code uses the busboy middleware to create a file from what we receive from the client
+  // at the moment, we store the images in the client/photos
   var fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', function (fieldname, file, filename) {
@@ -28,8 +29,6 @@ app.post('/', function(req, res) {
     fstream = fs.createWriteStream(__dirname + '/../client/photos/' + filename);
     file.pipe(fstream);
     fstream.on('close', function () {
-      // res.redirect('back');
-      console.log('closing stream');
       res.end();
     });
   });
@@ -40,14 +39,6 @@ app.use(express.static(__dirname + '../../client'));
 app.use('*', function(req, res){
   res.redirect('/');
 });
-//------------ROUTING------------------------------------------------------------------------
-
-//----------------Methods----------------
-
-
-// app.get('*', function(req, res) {
-//   res.sendFile('index.html');
-// });
 
 console.log('Server is listening on', PORT);
 app.listen(PORT);

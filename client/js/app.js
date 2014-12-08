@@ -1,6 +1,4 @@
 angular.module('onyxCrab', [
-  // 'ngAnimate',
-  // 'ngTouch',
   'ui.router'
 ])
 .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
@@ -13,7 +11,7 @@ angular.module('onyxCrab', [
   })
   .state('stereoView', {
     url: '/stereo',
-    params: {'fileName':{}},
+    params: {'fileName':{}, 'type':{}},
     templateUrl: 'stereoView.html',
     controller: 'StereoCtrl'
   })
@@ -32,10 +30,11 @@ angular.module('onyxCrab', [
     {src: 'photos/puppy.jpg', desc: 'Image 08'},
     {src: 'photos/redvsblue.jpg', desc: 'Image 09'},
     {src: 'photos/rose.jpg', desc: 'Image 10'},
-    {src: 'photos/space.jpg', desc: 'Image 11'},
     {src: 'photos/strawberry.jpg', desc: 'Image 12'},
     {src: 'photos/swan.jpg', desc: 'Image 13'},
-    {src: 'photos/whiteTiger.jpg', desc: 'Image 14'}
+    {src: 'photos/whiteTiger.jpg', desc: 'Image 14'},
+    {src: 'photos/bergsjostolen.jpg', type: 'panorama'},
+    {src: 'photos/space.jpg', type: 'panorama'}
   ];
 
   // if a current image is the same as requested image
@@ -43,56 +42,52 @@ angular.module('onyxCrab', [
     return $scope._Index === index;
   };
 
-  // show a certain image
+  // render the selected image in VR
   $scope.showPhoto = function (index, photo) {
-    // $scope._Index = index;
     var fileName = photo.src;
-    $state.go('stereoView', {fileName: fileName});
+    var type = photo.type;
+    $state.go('stereoView', {type: type, fileName: fileName});
 
   };
 
-  // $scope.picture = "";
   $scope.uploadFile = function(){
     var input = document.getElementById('photoInput');
-    //create an object with string name and push to scope.photos
+    var type = document.getElementById('panoramaCheck').checked ? 'panorama' : 'regular';
     var name = input.value.split('\\');
     name = 'photos/' + name[name.length-1];
-    console.log(name);
-    
-    var file = input.files[0];
-    console.log(file, 'FILE');
 
+    var file = input.files[0];
+
+    // required to post the image data to the server properly
     var fd = new FormData();
     fd.append('file', file);
-    console.log(fd);
 
     $http.post('', fd, {
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}     
     }).success(function(data){
-      console.log(data, 'SUCCESS');
-      $scope.photos.push({src: name, desc: "hello"});
+      console.log(data, 'POSTing image succeeded');
+      $scope.photos.push({src: name, type: type});
     }).error(function(data){
-      console.log(data, 'ERROR');
+      console.log(data, 'error in POSTing image');
     });
     
-    // $scope.photos.push({src: name, desc:'UserPhoto'});
   };
 
 })
 .controller('StereoCtrl', function($scope, $state, $stateParams){
 
-//  var url = 'http://localhost:8080/';
   var url = window.location.origin;
   var fileName = $stateParams.fileName;
+  var type = $stateParams.type;
   var filepath = url + '/' + fileName;
 
-//  setup();
-//  imageInit('http://localhost:8080/', fileName);
-//  cardboard.animate();
-
   init();
-  imageInit(filepath, 650, 450);
+  if (type && type === 'panorama') {
+    panoramaInit(filepath);
+  } else {
+    imageInit(filepath, 650, 450);
+  }
   animate();
 
-})
+});
