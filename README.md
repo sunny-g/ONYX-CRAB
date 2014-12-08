@@ -20,13 +20,19 @@
 
 ## Usage
 
-> Some usage instructions
+To run the server locally:
+
+```
+node server/server.js
+```
+
+Then navigate to ```localhost:8080``` on your smartphone, upload and/or pick a picture, hoist the phone into your Cardboard and enjoy!
 
 ## Requirements
 
 - Node 0.10.x
-- etc
-- etc
+- a smartphone with a WebGL-enabled web browser
+- a Google Cardboard (or other smartphone-capable headset)
 
 ## Development
 
