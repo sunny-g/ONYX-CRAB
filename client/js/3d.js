@@ -12,7 +12,7 @@ function panoramaInit(filepath) {
   });
 
   var sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(100, 32, 32),
+    new THREE.SphereGeometry(200, 32, 32),
     new THREE.MeshBasicMaterial({
       map: pic
     })

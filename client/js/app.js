@@ -30,11 +30,11 @@ angular.module('onyxCrab', [
     {src: 'photos/puppy.jpg', desc: 'Image 08'},
     {src: 'photos/redvsblue.jpg', desc: 'Image 09'},
     {src: 'photos/rose.jpg', desc: 'Image 10'},
-    {src: 'photos/space.jpg', desc: 'Image 11'},
     {src: 'photos/strawberry.jpg', desc: 'Image 12'},
     {src: 'photos/swan.jpg', desc: 'Image 13'},
     {src: 'photos/whiteTiger.jpg', desc: 'Image 14'},
-    {src: 'photos/bergsjostolen.jpg', type: 'panorama'}
+    {src: 'photos/bergsjostolen.jpg', type: 'panorama'},
+    {src: 'photos/space.jpg', type: 'panorama'}
   ];
 
   // if a current image is the same as requested image
@@ -52,6 +52,7 @@ angular.module('onyxCrab', [
 
   $scope.uploadFile = function(){
     var input = document.getElementById('photoInput');
+    var type = document.getElementById('panoramaCheck').checked ? 'panorama' : 'regular';
     var name = input.value.split('\\');
     name = 'photos/' + name[name.length-1];
 
@@ -66,7 +67,7 @@ angular.module('onyxCrab', [
       headers: {'Content-Type': undefined}     
     }).success(function(data){
       console.log(data, 'POSTing image succeeded');
-      $scope.photos.push({src: name, type: "hello"});
+      $scope.photos.push({src: name, type: type});
     }).error(function(data){
       console.log(data, 'error in POSTing image');
     });
