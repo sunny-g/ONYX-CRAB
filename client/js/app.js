@@ -34,7 +34,10 @@ angular.module('onyxCrab', [
     {src: 'photos/swan.jpg', desc: 'Image 13'},
     {src: 'photos/whiteTiger.jpg', desc: 'Image 14'},
     {src: 'photos/bergsjostolen.jpg', type: 'panorama'},
-    {src: 'photos/space.jpg', type: 'panorama'}
+    {src: 'photos/space.jpg', type: 'panorama'},
+    {src: 'photos/monumentvalley.jpg', type: 'panorama'},
+    {src: 'photos/narthex_equirect.jpg', type: 'panorama'},
+    {src: 'photos/hagia.jpg', type: 'panorama'}
   ];
 
   // if a current image is the same as requested image
