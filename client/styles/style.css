@@ -11,6 +11,16 @@ body {
     bottom: 0;
 }
 
+.title {
+    margin: 0 auto;
+    width: 100px;
+}
+
+.pictureForm {
+    margin: 0 auto;
+    width: 100px;
+}
+
 .nav {
     display: block;
     height: auto;
@@ -19,7 +29,6 @@ body {
     padding: 1em 0 0.8em;
     position: absolute;
     right: 0;
-    /*text-align: center;*/
     width: 100%;
     z-index: 5;
 }
