@@ -7,7 +7,7 @@ var url = require('url');
 var fs = require('fs');
 var path = require('path');
 
-var PORT = 8080;
+var port = process.env.PORT || 8080;
 
 var app = express();
 
@@ -40,8 +40,8 @@ app.use('*', function(req, res){
   res.redirect('/');
 });
 
-console.log('Server is listening on', PORT);
-app.listen(PORT);
+console.log('Server is listening on', port);
+app.listen(port);
 
 mongoose.connect('mongodb://localhost/jobColl');
 
