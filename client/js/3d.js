@@ -2,6 +2,24 @@
 // var filename = 'photos/dolphin.jpg';
 var cardboard;
 
+function panoramaInit(filepath) {
+  var pic = THREE.ImageUtils.loadTexture(filepath, null, function() {
+    console.log('loading texture');
+  }, function(err) {
+    if (err) {
+      console.log('got an error loading texture');
+    }
+  });
+
+  var sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(100, 32, 32),
+    new THREE.MeshBasicMaterial({
+      map: pic
+    })
+  );
+  sphere.scale.x = -1;
+  scene.add(sphere);
+}
 
 function imageInit(filepath, width, height) {
 

@@ -11,7 +11,7 @@ angular.module('onyxCrab', [
   })
   .state('stereoView', {
     url: '/stereo',
-    params: {'fileName':{}},
+    params: {'fileName':{}, 'type':{}},
     templateUrl: 'stereoView.html',
     controller: 'StereoCtrl'
   })
@@ -33,7 +33,8 @@ angular.module('onyxCrab', [
     {src: 'photos/space.jpg', desc: 'Image 11'},
     {src: 'photos/strawberry.jpg', desc: 'Image 12'},
     {src: 'photos/swan.jpg', desc: 'Image 13'},
-    {src: 'photos/whiteTiger.jpg', desc: 'Image 14'}
+    {src: 'photos/whiteTiger.jpg', desc: 'Image 14'},
+    {src: 'photos/bergsjostolen.jpg', type: 'panorama'}
   ];
 
   // if a current image is the same as requested image
@@ -44,7 +45,8 @@ angular.module('onyxCrab', [
   // render the selected image in VR
   $scope.showPhoto = function (index, photo) {
     var fileName = photo.src;
-    $state.go('stereoView', {fileName: fileName});
+    var type = photo.type;
+    $state.go('stereoView', {type: type, fileName: fileName});
 
   };
 
@@ -64,7 +66,7 @@ angular.module('onyxCrab', [
       headers: {'Content-Type': undefined}     
     }).success(function(data){
       console.log(data, 'POSTing image succeeded');
-      $scope.photos.push({src: name, desc: "hello"});
+      $scope.photos.push({src: name, type: "hello"});
     }).error(function(data){
       console.log(data, 'error in POSTing image');
     });
@@ -76,10 +78,15 @@ angular.module('onyxCrab', [
 
   var url = window.location.origin;
   var fileName = $stateParams.fileName;
+  var type = $stateParams.type;
   var filepath = url + '/' + fileName;
 
   init();
-  imageInit(filepath, 650, 450);
+  if (type && type === 'panorama') {
+    panoramaInit(filepath);
+  } else {
+    imageInit(filepath, 650, 450);
+  }
   animate();
 
 });
