@@ -20,7 +20,7 @@
 
 ## Usage
 
-Go to our [demo](onyxcrab.azurewebsites.net) page to try it out or run the server locally:
+Go to our [demo](http://onyxcrab.azurewebsites.net) page to try it out or run the server locally:
 
 ```
 node server/server.js
