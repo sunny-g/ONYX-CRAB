@@ -7,7 +7,7 @@ angular.module('onyxCrab', [
   .state('index', {
     url: '',
     templateUrl : 'home.html',
-    controller: 'MainCtrl',
+    controller: 'MainCtrl'
   })
   .state('stereoView', {
     url: '/stereo',
@@ -40,11 +40,6 @@ angular.module('onyxCrab', [
     {src: 'photos/redroom.jpg', type: 'panorama'}
   ];
 
-  // if a current image is the same as requested image
-  $scope.isActive = function (index) {
-    return $scope._Index === index;
-  };
-
   // render the selected image in VR
   $scope.showPhoto = function (index, photo) {
     var fileName = photo.src;
@@ -52,6 +47,10 @@ angular.module('onyxCrab', [
     $state.go('stereoView', {type: type, fileName: fileName});
 
   };
+
+//  $scope.loading = function () {
+//    document.getElementById('photoInputLabel').classList.add('loading');
+//  };
 
   $scope.uploadFile = function(){
     var input = document.getElementById('photoInput');
