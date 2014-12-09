@@ -7,7 +7,7 @@ angular.module('onyxCrab', [
   .state('index', {
     url: '',
     templateUrl : 'home.html',
-    controller: 'MainCtrl',
+    controller: 'MainCtrl'
   })
   .state('stereoView', {
     url: '/stereo',
@@ -24,26 +24,21 @@ angular.module('onyxCrab', [
     {src: 'photos/earth.jpg', desc: 'Image 02'},
     {src: 'photos/laferrari.jpg', desc: 'Image 03'},
     {src: 'photos/mini.jpg', desc: 'Image 04'},
-    {src: 'photos/mmm.jpg', desc: 'Image 05'},
     {src: 'photos/mounds.jpg', desc: 'Image 06'},
     {src: 'photos/parrot.jpg', desc: 'Image 07'},
     {src: 'photos/puppy.jpg', desc: 'Image 08'},
     {src: 'photos/redvsblue.jpg', desc: 'Image 09'},
-    {src: 'photos/rose.jpg', desc: 'Image 10'},
-    {src: 'photos/strawberry.jpg', desc: 'Image 12'},
     {src: 'photos/swan.jpg', desc: 'Image 13'},
-    {src: 'photos/whiteTiger.jpg', desc: 'Image 14'},
     {src: 'photos/bergsjostolen.jpg', type: 'panorama'},
     {src: 'photos/space.jpg', type: 'panorama'},
     {src: 'photos/monumentvalley.jpg', type: 'panorama'},
     {src: 'photos/narthex_equirect.jpg', type: 'panorama'},
-    {src: 'photos/hagia.jpg', type: 'panorama'}
+    {src: 'photos/hagia.jpg', type: 'panorama'},
+    {src: 'photos/louvre.jpg', type: 'panorama'},
+    {src: 'photos/doctoredNight.jpg', type: 'panorama'},
+    {src: 'photos/terrarium.jpg', type: 'panorama'},
+    {src: 'photos/redroom.jpg', type: 'panorama'}
   ];
-
-  // if a current image is the same as requested image
-  $scope.isActive = function (index) {
-    return $scope._Index === index;
-  };
 
   // render the selected image in VR
   $scope.showPhoto = function (index, photo) {
@@ -52,6 +47,10 @@ angular.module('onyxCrab', [
     $state.go('stereoView', {type: type, fileName: fileName});
 
   };
+
+//  $scope.loading = function () {
+//    document.getElementById('photoInputLabel').classList.add('loading');
+//  };
 
   $scope.uploadFile = function(){
     var input = document.getElementById('photoInput');
