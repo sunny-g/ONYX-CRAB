@@ -16,15 +16,15 @@
 </div>
 
 <!-- slider container -->
-<div class="ui photo container slider">
+<div class="ui">
 
     <!-- extra navigation controls -->
-    <ul class="nav ui three column grid">
-        <li ng-repeat="photo in photos" class="column">
-            <div class="ui segment">
-              <img src="{{photo.src}}" ng-click="showPhoto($index, photo);" class="ui fluid image"/>
-            </div>
-        </li>
-    </ul>
+  <ul class="nav ui three column grid">
+    <li ng-repeat="photo in photos" class="column">
+      <div class="ui segment">
+        <img src="{{photo.src}}" ng-click="showPhoto($index, photo);" class="ui fluid image"/>
+      </div>
+    </li>
+  </ul>
 </div>
 
